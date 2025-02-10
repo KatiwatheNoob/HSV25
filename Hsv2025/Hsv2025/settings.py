@@ -1,6 +1,7 @@
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tdtm*(+kxi+zi+xqmyyg=dy9&_$c0-2$)44t#dslvz32s18c_#'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,7 +36,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.whiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,8 +130,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #reCaptcha
-RECAPTCHA_SITE_KEY = '6Lez1M8qAAAAACiZIbFTg4vPbHALq_iByCmHxu9E'
-RECAPTCHA_SECRET_KEY = '6Lez1M8qAAAAADCRcDaeyrtiMX_a_SZiRyzS3tYn'
+
+RECAPTCHA_SITE_KEY = os.getenv("RECAPTCHA_SITE_KEY")
+RECAPTCHA_SECRET_KEY = os.getenv("RECAPTCHA_SECRET_KEY")
 
 
 #Email setting
@@ -141,6 +143,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "HSV Website"
 ALLOWED_HOSTS =['127.0.0.1']
 
-EMAIL_HOST_USER = 'roykatiwa@hindsight-ventures.com'
-EMAIL_HOST_PASSWORD = 'mlxc axso ndca dqug'
+
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 

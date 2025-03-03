@@ -1,13 +1,18 @@
 {
-    "builds": [{
+    "version": 2,
+    "builds": [
+      {
         "src": "Hsv2025/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.12.6" }
-    }],
+        "use": "@vercel/python"
+      }
+    ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "Hsv2025/wsgi.py"
-        }
-    ]
-}
+      {
+        "src": "/(.*)",
+        "dest": "Hsv2025/wsgi.py"
+      }
+    ],
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "Hsv2025.settings"
+    }
+  }

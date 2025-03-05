@@ -76,7 +76,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME'),
-        'USER': os.environ('DB_USER'),
+        'USER': os.getenv('DB_USER'),
         'PASSWORD':os.getenv('DB_PASSWORD'),
         'HOST':os.getenv('DB_HOST'),
         'PORT':os.getenv('DB_PORT'),
@@ -121,9 +121,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # Where collectstatic will collect static files for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # This prevents the error
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Ensure this directory exists!
-]
+STATICFILES_DIRS = []  # Comment or remove this line
+
  # Ensure WhiteNoise is configured correctly
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'   
 

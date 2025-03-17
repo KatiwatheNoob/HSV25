@@ -10,10 +10,10 @@
     <meta content="{{ property.briefDescription }}" name="description" />
     <meta content="{{ property.name }}" property="og:title" />
     <meta content="{{ property.briefDescription }}" property="og:description" />
-    <meta content="{{ property.mainImage.url }}" property="og:image" />
+    <meta content="{{ property.mainImage}}" property="og:image" />
     <meta content="{{ property.name }}" property="twitter:title" />
     <meta content="{{ property.briefDescription }}" property="twitter:description" />
-    <meta content="{{ property.mainImage.url }}" property="twitter:image" />
+    <meta content="{{ property.mainImage }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -86,16 +86,16 @@
               
               <!-- Main Image -->
               <div role="listitem" class="w-dyn-item w-dyn-repeater-item gallery-item">
-                <a href="{{ property.mainImage.url }}" data-fancybox="gallery" data-caption="{{ property.name }}">
-                  <img src="{{ property.mainImage.url }}" alt="{{ property.name }}" class="gallery-image" />
+                <a href="{{ property.mainImage}}" data-fancybox="gallery" data-caption="{{ property.name }}">
+                  <img src="{{ property.mainImage}}" alt="{{ property.name }}" class="gallery-image" />
                 </a>
               </div>
     
               <!-- Additional Images -->
               {% for image in property_images %}
                 <div role="listitem" class="w-dyn-item w-dyn-repeater-item gallery-item">
-                  <a href="{{ image.image.url }}" data-fancybox="gallery" data-caption="Additional Image for {{ property.name }}">
-                    <img src="{{ image.image.url }}" alt="Additional Image for {{ property.name }}" class="gallery-image" />
+                  <a href="{{ image.image }}" data-fancybox="gallery" data-caption="Additional Image for {{ property.name }}">
+                    <img src="{{ image.image}}" alt="Additional Image for {{ property.name }}" class="gallery-image" />
                   </a>
                 </div>
               {% endfor %}

@@ -3,6 +3,10 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 
 from decouple import config
 import dj_database_url
@@ -42,6 +46,8 @@ INSTALLED_APPS = [
     'hsv',
     'tinymce',
     'humanize',
+    'cloudinary',
+    'cloudinary_storage',
     "whitenoise.runserver_nostatic",
 ]
 
@@ -91,9 +97,33 @@ WSGI_APPLICATION = 'Hsv2025.wsgi.application'
     
 #}
 #}
+#DATABASES = {
+ #   'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+#}
+import os
+
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+cloudinary.config( 
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+print("Cloudinary Config:", os.getenv("CLOUDINARY_CLOUD_NAME"))
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -138,7 +168,7 @@ STATICFILES_DIRS = []  # Comment or remove this line
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'   
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

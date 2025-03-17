@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from tinymce.models import HTMLField
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 
 
@@ -11,7 +12,7 @@ from django.utils.text import slugify
 class Property(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)  # Automatically generated
-    mainImage = models.ImageField(upload_to='uploads/images/')
+    mainImage = CloudinaryField('image')  # ✅ Store in Cloudinary
     briefDescription = models.TextField(max_length=500)
     details = models.TextField(blank=True)
     location = models.CharField(max_length=100)
@@ -46,7 +47,7 @@ class Property(models.Model):
 # ✅ Fixed Image Model
 class Image(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='property_images/')
+    image = CloudinaryField('image')  # ✅ Store in Cloudinary
 
     def __str__(self):
         return f"Image for {self.property.name}"
